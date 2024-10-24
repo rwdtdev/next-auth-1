@@ -21,8 +21,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   username: z.string().min(1, {
@@ -34,8 +34,7 @@ const formSchema = z.object({
 });
 
 export function LoginUserForm() {
-  const session = useSession();
-  console.log("🚀 ~ LoginUserForm ~ session:", session);
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,13 +47,16 @@ export function LoginUserForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     // const res = await loginAction(values);
-    const res = await signIn("credentials", {
+    const resSignIn = await signIn("credentials", {
       redirect: false,
       username: values.username,
       password: values.password,
     });
 
-    console.log(res);
+    console.log(resSignIn);
+    if (resSignIn?.ok) {
+      router.push("/");
+    }
   }
 
   return (

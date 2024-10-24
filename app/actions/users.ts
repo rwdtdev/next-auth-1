@@ -25,26 +25,3 @@ export async function addUserAction({ username, password }: LoginData) {
     console.error(err);
   }
 }
-
-export async function loginAction({ username, password }: LoginData) {
-  // Store hash in your password DB.
-  try {
-    const user = await prisma.user.findUnique({
-      where: {
-        username,
-      },
-    });
-    if (!user) {
-      return { isLoginSuccessful: false, message: "no such user" };
-    } else {
-      const isPasswordCorrect = bcrypt.compareSync(password, user.passwordHash);
-      if (!isPasswordCorrect) {
-        return { isLoginSuccessful: false, message: "password is not correct" };
-      } else {
-        return { isLoginSuccessful: true, message: "log in successfully" };
-      }
-    }
-  } catch (err) {
-    console.error(err);
-  }
-}

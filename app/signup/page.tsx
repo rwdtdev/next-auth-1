@@ -1,9 +1,9 @@
 import { AddUserForm } from "@/components/AddUserForm";
 
-export default function AddUserPage() {
+export default function SignUpPage() {
   return (
     <>
-      <h1>AddUserPage</h1>
+      <h1>SignUpPage</h1>
       <AddUserForm />
     </>
   );

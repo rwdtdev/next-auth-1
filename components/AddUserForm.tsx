@@ -49,10 +49,10 @@ export function AddUserForm() {
   }
 
   return (
-    <Card className="w-[350px]">
+    <Card className="w-[350px] mx-auto">
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>Sign Up for our project</CardTitle>
+        <CardDescription>Come up with username and password.</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -80,7 +80,7 @@ export function AddUserForm() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn" {...field} />
+                    <Input placeholder="shadcn" {...field} type="password" />
                   </FormControl>
                   <FormDescription>
                     This is your public display name.
